@@ -1,6 +1,7 @@
 "use client";
 
 import { ModerationAd, TransportModerationAd } from "@/features/api/site/ad";
+import { CommonLoader } from "@/shared/common";
 import React, { useEffect, useState } from "react";
 
 const mockAd: TransportModerationAd = {
@@ -18,12 +19,21 @@ export function ReqModerationAdUi() {
     setAd(mockAd);
   }, []);
 
-  return <div>ui</div>;
+  return ad ? (
+    <section className="bg-white border-[3px] border-gray-300 text-black p-4 rounded-xl">
+      <p className="text-xl">Просмотр заявки на модерацию</p>
+      <p>Объявление #{ad.id}</p>
+
+      <Text label="Заголовок" text="Аренда квартиры в центре города" />
+    </section>
+  ) : (
+    <CommonLoader />
+  );
 }
 
 const Text = ({ label, text }: { label: string; text: string }) => (
   <div className="text-lg">
-    <p className="text-gray-200">{label}</p>
+    <p className="text-gray-400">{label}</p>
     <p>{text}</p>
   </div>
 );
