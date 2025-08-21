@@ -120,3 +120,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  @apply min-h-full flex flex-col;
+}
+
+main {
+  @apply flex-1;
+}

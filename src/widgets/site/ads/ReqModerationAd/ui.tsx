@@ -1,6 +1,6 @@
 "use client";
 
-import { ModerationAd, TransportModerationAd } from "@/features/api/site/ad";
+import { ModerationAd, TransportModerationAd } from "@/features/api/site/ads";
 import { CommonLoader } from "@/shared/common";
 import React, { useEffect, useState } from "react";
 
