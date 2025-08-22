@@ -1,8 +1,7 @@
 "use client";
 
 import { authService } from "@/features/api/site/auth";
-import { CommonTextField } from "@/features/form";
-import { AuthTextField } from "@/features/form/auth-fields";
+import { AuthTextField } from "@/features/form";
 import {
   WrapperAuthUi,
   loginFormSchema,
@@ -21,7 +20,7 @@ export default function LoginPage() {
         {(form) => (
           <>
             <AuthTextField form={form} name="email" placeholder="Email" />
-            <AuthTextField form={form} name="email" placeholder="Email" />
+            <AuthTextField form={form} name="password" placeholder="Пароль" />
           </>
         )}
       </FromWrapperAuthUi>

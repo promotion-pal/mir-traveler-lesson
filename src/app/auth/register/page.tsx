@@ -1,8 +1,7 @@
 "use client";
 
 import { authService } from "@/features/api/site/auth";
-import { CommonTextField } from "@/features/form";
-import { AuthTextField } from "@/features/form/auth-fields";
+import { AuthTextField } from "@/features/form";
 import {
   WrapperAuthUi,
   useAuthFn,

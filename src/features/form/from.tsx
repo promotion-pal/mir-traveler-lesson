@@ -1,6 +1,5 @@
 "use client";
 
-import { CommonLoader } from "@/shared/common";
 import { Form } from "@/shared/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";

@@ -22,7 +22,10 @@ const DYNAMIC_PATH = (
 
 const ROUTE = {
   SITE: {
-    MAIN: DYNAMIC_PATH(["/"]),
+    MAIN: DYNAMIC_PATH([""]),
+    TRANSPORT: DYNAMIC_PATH(["transport"]),
+    TOUR: DYNAMIC_PATH(["tour"]),
+    HOUSE: DYNAMIC_PATH(["house"]),
   },
   ADMIN: {
     ADS: {
