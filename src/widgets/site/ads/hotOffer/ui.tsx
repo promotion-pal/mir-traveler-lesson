@@ -3,29 +3,55 @@
 import { HotOfferAd } from "@/features/api/site/ads";
 import { CommonPlugPhoto } from "@/shared/common";
 import { cn } from "@/shared/lib/utils";
+import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
-import { ArrowUpRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/shared/ui/carousel";
+import { ArrowUpRight, StarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ReactNode } from "react";
 
-function WrapperHotOfferUi({ title }: { title: string }) {
+function WrapperHotOfferUi({ data }: { data: HotOfferAd[] }) {
   return (
-    <section>
-      <p>{title}</p>
+    <section className="mt-8">
+      <p className="text-xl font-semibold container mb-9 md:text-4xl">
+        Горящие предложения
+      </p>
+
+      <Carousel opts={{ loop: true }}>
+        <CarouselContent>
+          {data.map((ad) => (
+            <CarouselItem
+              className="flex basis-full justify-center sm:basis-auto"
+              key={ad.id}
+            >
+              <CardHotOfferUi {...ad} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
     </section>
   );
 }
 
-function CardHotOfferUi({ props }: { props: HotOfferAd }) {
+function CardHotOfferUi(props: HotOfferAd) {
   return (
     <div className="group w-[340px] rounded-2xl bg-gray-light">
-      <div className="relative h-[230px] transition ease-in-out">
+      <div className="relative rounded-2xl h-[230px] transition ease-in-out">
         {props.photos.length > 0 ? (
           <Image
             src={props.photos[0].photo}
             alt={props.title}
             fill
-            className="rounded-2xl object-cover"
+            className="object-cover"
           />
         ) : (
           <CommonPlugPhoto />
@@ -39,17 +65,9 @@ function CardHotOfferUi({ props }: { props: HotOfferAd }) {
         />
 
         <div className="max-w-2/3 absolute left-4 top-4 flex flex-wrap gap-1">
-          {/* {props.is_studio && <Badge variant="teal">Студия</Badge>} */}
-          {/* {props.is_last_minute_tour && ( */}
-          {/* <Badge variant="teal">Горящий тур</Badge> */}
-          {/* )} */}
+          {props.is_studio && <Badge>Студия</Badge>}
+          {props.is_last_minute_tour && <Badge>Горящий тур</Badge>}
         </div>
-
-        {/* <Favourites
-        idAd={+data.id}
-        category={data.category_type}
-        isFavorite={false}
-      /> */}
 
         <p className="absolute bottom-5 left-4 max-w-64 text-2xl font-medium text-white">
           {props.title}
@@ -59,12 +77,12 @@ function CardHotOfferUi({ props }: { props: HotOfferAd }) {
       <div className="relative px-4 py-5">
         <div className="mb-2 flex items-center justify-between">
           <p className="text-sm">{props.address.full_address}</p>
-          {/* {data.rating && (
+          {props.rating && (
             <Badge className="bg-yellow">
               <StarIcon />
-              {data.rating}
+              {props.rating}
             </Badge>
-          )} */}
+          )}
         </div>
         <div className="mb-3">
           <span className="text-sm text-gray line-through"></span>

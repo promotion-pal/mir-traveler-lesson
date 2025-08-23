@@ -1,4 +1,4 @@
-import { ReqModerationAdUi } from "@/widgets/site/ads/ReqModerationAd";
+import { ReqModerationAdUi } from "@/widgets/site/ads/reqModerationAd";
 
 export default function LkTransportPage() {
   return (

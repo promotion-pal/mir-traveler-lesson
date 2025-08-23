@@ -42,3 +42,21 @@ export type BaseAdAddress = {
 export interface BaseAdPhoto {
   photo: string;
 }
+
+export type BannerPlacement =
+  | "main_page"
+  | "housing"
+  | "transport"
+  | "recreation"
+  | "tour"
+  | "excursion";
+export type SliderImage = {
+  image: string;
+};
+export interface AdBanner {
+  slider_images: SliderImage[];
+  placement: BannerPlacement;
+  banner_image: string;
+  banner_title: string;
+  slider_title: string;
+}

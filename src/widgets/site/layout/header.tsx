@@ -58,7 +58,7 @@ const DesktopHeaderUi = () => (
     <div className="container grid grid-cols-[10%_85%] gap-5 p-5 bg-gray-100 rounded-xl items-center">
       <LogoNavigationUi />
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         <PagesNavigateUi />
         <LineHeaderUi />
         <AdNavigateUi />
@@ -80,10 +80,10 @@ bg-clip-text text-transparent"
 const AdNavigateUi = () => {
   const routes = [
     { title: "Главная", link: ROUTE.SITE.MAIN },
-    { title: "Аренда жилья", icon: HouseIcon, link: ROUTE.SITE.MAIN },
+    { title: "Аренда жилья", icon: HouseIcon, link: ".." },
     { title: "Аренда транспорта", icon: CarFrontIcon, link: ROUTE.AUTH.LOGIN },
     { title: "Туры и экскурсии", icon: EarthIcon, link: "" },
-    { title: "Отдых и развлечения", icon: TreePalmIcon, link: "" },
+    { title: "Отдых и развлечения", icon: TreePalmIcon, link: "k" },
   ];
 
   return (
@@ -92,10 +92,10 @@ const AdNavigateUi = () => {
         <li key={item.link}>
           <Link
             href={item.link}
-            className="items-center font-normal text-lg gap-1.5 transition hover:text-teal flex"
+            className="items-center font-normal text-lg gap-2 transition hover:text-teal flex"
           >
             {item.icon && (
-              <item.icon className="text-gray-400 hidden" size={20} />
+              <item.icon className="text-gray-400 hidden md:block" size={20} />
             )}
             <p>{item.title}</p>
           </Link>
