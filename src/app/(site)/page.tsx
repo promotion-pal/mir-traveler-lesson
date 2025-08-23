@@ -1,6 +1,7 @@
 import { adService } from "@/features/api/site/ads";
 import { AdsBannerClient } from "@/widgets/site/ads/adsBanner";
-import { CardHotOfferUi, WrapperHotOfferUi } from "@/widgets/site/ads/hotOffer";
+import { WrapperHotOfferUi } from "@/widgets/site/ads/hotOffer";
+
 import {
   CardNavigationUi,
   WrapperNavigationUi,

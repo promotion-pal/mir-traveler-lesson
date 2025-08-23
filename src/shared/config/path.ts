@@ -22,10 +22,16 @@ const DYNAMIC_PATH = (
 
 const ROUTE = {
   SITE: {
+    CONTACT: DYNAMIC_PATH(["contact"]),
     MAIN: DYNAMIC_PATH([""]),
     TRANSPORT: DYNAMIC_PATH(["transport"]),
     TOUR: DYNAMIC_PATH(["tour"]),
     HOUSE: DYNAMIC_PATH(["house"]),
+  },
+  LK: {
+    USER: DYNAMIC_PATH(["lk", "user"]),
+    NOTIFICATIONS: DYNAMIC_PATH(["lk", "notifications"]),
+    WALLET: DYNAMIC_PATH(["lk", "wallet"]),
   },
   ADMIN: {
     ADS: {
@@ -38,6 +44,11 @@ const ROUTE = {
   AUTH: {
     LOGIN: DYNAMIC_PATH(["auth", "login"]),
     REGISTER: DYNAMIC_PATH(["auth", "register"]),
+  },
+  DOCUMENTS: {
+    OFFER_AGREE: DYNAMIC_PATH(["offer-agree"]),
+    PERSON_DATA: DYNAMIC_PATH(["person-data"]),
+    USER_AGREE: DYNAMIC_PATH(["user-agree"]),
   },
 };
 

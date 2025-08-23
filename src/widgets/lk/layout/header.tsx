@@ -22,7 +22,7 @@ import {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export function Header() {
+export function LkHeader() {
   return (
     <header>
       <MobileHeaderUi />
