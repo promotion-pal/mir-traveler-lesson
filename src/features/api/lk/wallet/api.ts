@@ -2,11 +2,14 @@ import { api } from "../../fetch";
 import { Balance, TransactionsRequest } from "./types";
 
 class WalletService {
-  getTransactions(): Promise<TransactionsRequest> {
+  async getTransactions(): Promise<TransactionsRequest> {
     return api.getWithToken<TransactionsRequest>("/site/transactions/");
   }
-  getBalance(userId: number): Promise<Balance> {
+  async getBalance(userId: number): Promise<Balance> {
     return api.getWithToken<Balance>(`/site/balance/${userId}/`);
+  }
+  async refillBalance(amount: number) {
+    return api.postWithToken<Balance>("/site/transactions/", { amount });
   }
 }
 

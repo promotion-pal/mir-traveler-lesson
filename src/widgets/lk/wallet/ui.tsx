@@ -6,6 +6,8 @@ import { CommonEmpty } from "@/shared/common";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { useEffect, useState } from "react";
 import { useDefinitionUserFn } from "../common/definitionUser";
+import { CommonFrom, CommonTextField } from "@/features/form";
+import z from "zod";
 
 function TransactionsUi({
   data,
@@ -124,4 +126,24 @@ const ClientWalletUi = () => {
   );
 };
 
-export { ClientWalletUi };
+const RefillUi = () => {
+  const refillSchema = z.object({
+    amount: z.coerce.number(),
+  });
+
+  return (
+    <CommonFrom
+      schema={refillSchema}
+      defaultValues={{ amount: 0 }}
+      onSubmit={async () => {
+        await walletService.refillBalance(4);
+      }}
+    >
+      {(form) => (
+        <CommonTextField form={form} name="amount" inputVariant="tariff" />
+      )}
+    </CommonFrom>
+  );
+};
+
+export { ClientWalletUi, RefillUi };

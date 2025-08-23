@@ -2,7 +2,7 @@
 
 import { CommonTabs, TabItem } from "@/entities/common/tab";
 import { LkWrapper } from "@/entities/lk/wrapper";
-import { ClientWalletUi } from "@/widgets/lk/wallet/ui";
+import { RefillUi, ClientWalletUi } from "@/widgets/lk/wallet/ui";
 
 export default function page() {
   const WALLET_TABS: TabItem<"balance" | "refill">[] = [
@@ -19,7 +19,10 @@ export default function page() {
   return (
     <LkWrapper title="Мой баланс">
       <CommonTabs initialTab="balance" tabs={WALLET_TABS}>
-        {(activeTab) => activeTab === "balance" && <ClientWalletUi />}
+        {(activeTab) =>
+          (activeTab === "balance" && <ClientWalletUi />) ||
+          (activeTab === "refill" && <RefillUi />)
+        }
       </CommonTabs>
     </LkWrapper>
   );
