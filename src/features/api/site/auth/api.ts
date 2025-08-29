@@ -1,6 +1,8 @@
 import { removeTokens, setToken } from "@/features/data/token";
 import { Login } from "./types";
 import { api } from "../../fetch";
+import { redirect } from "next/navigation";
+import { ROUTE } from "@/shared/config/path";
 
 class AuthService {
   async login(form: Login) {
@@ -43,7 +45,7 @@ class AuthService {
 
   async logout() {
     await removeTokens();
-    // redirect(APP_ROUTES.HOME.DEF);
+    redirect(ROUTE.SITE.MAIN);
   }
 }
 

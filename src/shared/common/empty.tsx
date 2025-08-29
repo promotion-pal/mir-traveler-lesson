@@ -1,3 +1,4 @@
+import { app } from "../config/app";
 import { cn } from "../lib/utils";
 
 interface BaseCommonEmpty {
@@ -48,7 +49,7 @@ const CommonPlugPhoto = ({ styleWrapper }: BaseCommonEmpty) => (
       styleWrapper
     )}
   >
-    {/* <p className="text-lg text-primary">{app.siteName}</p> */}
+    <p className="text-lg text-primary">{app.siteName}</p>
   </div>
 );
 

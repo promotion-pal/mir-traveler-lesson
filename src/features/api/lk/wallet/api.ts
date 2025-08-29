@@ -8,7 +8,7 @@ class WalletService {
   async getBalance(userId: number): Promise<Balance> {
     return api.getWithToken<Balance>(`/site/balance/${userId}/`);
   }
-  async refillBalance(amount: number) {
+  async refillBalance(amount: string) {
     return api.postWithToken<Balance>("/site/transactions/", { amount });
   }
 }

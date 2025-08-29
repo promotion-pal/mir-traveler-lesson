@@ -1,1 +1,1 @@
-export { TransactionsUi, BalanceUi } from "./ui";
+export { ClientWalletUi, RefillUi } from "./ui";

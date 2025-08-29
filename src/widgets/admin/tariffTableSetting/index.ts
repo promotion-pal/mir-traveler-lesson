@@ -1,0 +1,1 @@
+export { TariffTableSettingUi } from "./ui";

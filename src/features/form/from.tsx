@@ -2,7 +2,7 @@
 
 import { Form } from "@/shared/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, UseFormReturn } from "react-hook-form";
 import { z, ZodType } from "zod";
 
@@ -50,6 +50,13 @@ function CommonFrom<T extends ZodType>({
       setIsSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    if (form.formState.errors) {
+      console.log("Ошибка");
+      console.log(form.formState.errors);
+    }
+  }, [form]);
 
   return (
     <Form {...form}>

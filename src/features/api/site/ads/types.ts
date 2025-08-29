@@ -29,6 +29,14 @@ export interface HotOfferAd {
   link: string;
 }
 
+export interface PriceAdVariant {
+  price?: number;
+  price_per_excursion?: number;
+  price_per_tour?: number;
+  price_per_day?: number;
+  price_per_hour?: number;
+}
+
 export type BaseAdAddress = {
   full_address: string;
   region?: string;
@@ -40,6 +48,11 @@ export type BaseAdAddress = {
 };
 
 export interface BaseAdPhoto {
+  photo: string;
+}
+
+export interface AdPhoto {
+  id: number;
   photo: string;
 }
 

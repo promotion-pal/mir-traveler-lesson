@@ -1,0 +1,1 @@
+export { ClientFavoritesUi } from "./ui";

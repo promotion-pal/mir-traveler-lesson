@@ -1,31 +1,53 @@
 "use client";
 
-import { HotOfferAd } from "@/features/api/site/ads";
+import {
+  AdCategory,
+  HotOfferAd,
+  PriceAdVariant,
+} from "@/features/api/site/ads";
 import { CommonPlugPhoto } from "@/shared/common";
+import { ROUTE } from "@/shared/config/path";
 import { cn } from "@/shared/lib/utils";
 import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/shared/ui/carousel";
-import { ArrowUpRight, StarIcon } from "lucide-react";
+import { ArrowUpRightIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { useEffect, useState } from "react";
 
 function WrapperHotOfferUi({ data }: { data: HotOfferAd[] }) {
+  const [api, setApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      if (api.canScrollNext()) {
+        api.scrollNext();
+      } else {
+        api.scrollTo(0);
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [api]);
+
   return (
     <section className="mt-8">
       <p className="text-xl font-semibold container mb-9 md:text-4xl">
         Горящие предложения
       </p>
 
-      <Carousel opts={{ loop: true }}>
-        <CarouselContent>
+      <Carousel setApi={setApi} opts={{ loop: true }}>
+        <CarouselContent className="container">
           {data.map((ad) => (
             <CarouselItem
               className="flex basis-full justify-center sm:basis-auto"
@@ -43,9 +65,11 @@ function WrapperHotOfferUi({ data }: { data: HotOfferAd[] }) {
 }
 
 function CardHotOfferUi(props: HotOfferAd) {
+  const { price, link } = useHotOfferFn();
+
   return (
-    <div className="group w-[340px] rounded-2xl bg-gray-light">
-      <div className="relative rounded-2xl h-[230px] transition ease-in-out">
+    <div className="group w-[340px] rounded-2xl bg-gray-50">
+      <div className="relative overflow-hidden rounded-2xl h-[230px] transition ease-in-out">
         {props.photos.length > 0 ? (
           <Image
             src={props.photos[0].photo}
@@ -54,7 +78,7 @@ function CardHotOfferUi(props: HotOfferAd) {
             className="object-cover"
           />
         ) : (
-          <CommonPlugPhoto />
+          <CommonPlugPhoto styleWrapper="bg-gray-100" />
         )}
 
         <div
@@ -69,9 +93,9 @@ function CardHotOfferUi(props: HotOfferAd) {
           {props.is_last_minute_tour && <Badge>Горящий тур</Badge>}
         </div>
 
-        <p className="absolute bottom-5 left-4 max-w-64 text-2xl font-medium text-white">
-          {props.title}
-        </p>
+        <div className="absolute bottom-5 left-4 max-w-64 bg-black/70 px-2 rounded-lg">
+          <p className="text-2xl font-medium text-white">{props.title}</p>
+        </div>
       </div>
 
       <div className="relative px-4 py-5">
@@ -87,9 +111,11 @@ function CardHotOfferUi(props: HotOfferAd) {
         <div className="mb-3">
           <span className="text-sm text-gray line-through"></span>
           <p className="text-2xl font-medium">
-            {/* {props..toLocaleString("ru-RU")} р */}
+            {price(props).toLocaleString("ru-RU")} р
             <span className="ml-1.5 text-base font-light">
-              {/* {data.price_per_day ? "/ сутки" : data.price_per_hour && "/ час"} */}
+              {props.price_per_day
+                ? "/ сутки"
+                : props.price_per_hour && "/ час"}
             </span>
           </p>
         </div>
@@ -101,15 +127,13 @@ function CardHotOfferUi(props: HotOfferAd) {
           <p>{props.average_bill && `Средний чек: ${props.average_bill}`}</p>
         </div>
         <Button
-          className="absolute bottom-5 right-4"
-          //   variant="outline-teal"
-          //   radius="full"
+          className="absolute bottom-5 right-4 rounded-full"
           size="icon"
           asChild
         >
-          {/* <Link href={`${link()}/${props.id}`}>
-            <ArrowUpRight />
-          </Link> */}
+          <Link href={`${link(props.category_type)}/${props.id}`}>
+            <ArrowUpRightIcon />
+          </Link>
         </Button>
       </div>
     </div>
@@ -117,3 +141,22 @@ function CardHotOfferUi(props: HotOfferAd) {
 }
 
 export { WrapperHotOfferUi, CardHotOfferUi };
+
+const useHotOfferFn = () => {
+  const price = (props: PriceAdVariant) => {
+    return (
+      props.price_per_day ||
+      props.price_per_hour ||
+      props.price_per_tour ||
+      props.price_per_excursion ||
+      0
+    );
+  };
+
+  const link = (props: AdCategory) => {
+    return ROUTE.SITE.ADS({ category: props });
+  };
+
+  return { price, link };
+};
+export { useHotOfferFn };

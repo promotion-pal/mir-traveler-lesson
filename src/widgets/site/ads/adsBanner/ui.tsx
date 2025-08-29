@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useAdsBannersFn } from "./fn";
 import { CommonEmpty, CommonLoader } from "@/shared/common";
 import { AdBanner, BannerPlacement } from "@/features/api/site/ads";
+import { Skeleton } from "@/shared/ui/skeleton";
 
 function AdsBannerClient({
   placement = "main_page",
@@ -20,7 +21,11 @@ function AdsBannerClient({
     get(placement).then(setBanners);
   }, []);
 
-  return !isLoad ? <AdsBannerUi props={banners} /> : <CommonLoader />;
+  return !isLoad ? (
+    <AdsBannerUi props={banners} />
+  ) : (
+    <Skeleton className="w-full h-[300px] bg-gray-300" />
+  );
 }
 
 interface AdsBannerUiProps {

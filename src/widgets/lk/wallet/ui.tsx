@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useDefinitionUserFn } from "../common/definitionUser";
 import { CommonFrom, CommonTextField } from "@/features/form";
 import z from "zod";
+import { Button } from "@/shared/ui/button";
 
 function TransactionsUi({
   data,
@@ -128,19 +129,24 @@ const ClientWalletUi = () => {
 
 const RefillUi = () => {
   const refillSchema = z.object({
-    amount: z.coerce.number(),
+    amount: z.string(),
   });
 
   return (
     <CommonFrom
       schema={refillSchema}
-      defaultValues={{ amount: 0 }}
-      onSubmit={async () => {
-        await walletService.refillBalance(4);
+      defaultValues={{ amount: "" }}
+      onSubmit={async (data) => {
+        await walletService.refillBalance(data.amount);
       }}
     >
       {(form) => (
-        <CommonTextField form={form} name="amount" inputVariant="tariff" />
+        <div className="w-[300px]">
+          <CommonTextField form={form} name="amount" placeholder="Сумма" />
+          <Button className="rounded-full mt-4" type="submit">
+            Пополнить
+          </Button>
+        </div>
       )}
     </CommonFrom>
   );

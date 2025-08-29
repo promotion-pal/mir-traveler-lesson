@@ -4,6 +4,12 @@ import { cn } from "@/shared/lib/utils";
 import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
 import { ReactElement } from "react";
+import CrescentIcon from "@/shared/icon/navigation/CrescentIcon.svg";
+import HoopIcon from "@/shared/icon/navigation/HoopIcon.svg";
+import SphereIcon from "@/shared/icon/navigation/SphereIcon.svg";
+import MapIcon from "@/shared/icon/navigation/MapIcon.svg";
+import EarthIcon from "@/shared/icon/navigation/EarthIcon.svg";
+import Image from "next/image";
 
 interface WrapperNavigationCartProps {
   className?: string;
@@ -39,7 +45,7 @@ const infoNavigation: Record<AdCategory, InfoNavigation> = {
     style: "bg-primary",
     icon: (
       <div className={cn(`absolute right-0 top-0 z-20`)}>
-        {/* <GlobeGraphicIcon width={250} height={250} /> */}
+        <Image src={EarthIcon} alt="icon" width={240} height={240} />
       </div>
     ),
   },
@@ -49,7 +55,7 @@ const infoNavigation: Record<AdCategory, InfoNavigation> = {
     style: "bg-primary",
     icon: (
       <div className={cn(`absolute right-0 top-12 z-20`)}>
-        {/* <HoopIcon width={200} height={200} /> */}
+        <Image src={HoopIcon} alt="icon" width={200} height={200} />
       </div>
     ),
   },
@@ -59,7 +65,7 @@ const infoNavigation: Record<AdCategory, InfoNavigation> = {
     style: "bg-gradient-to-tr from-[#03A0D9] to-[#68DFF2]",
     icon: (
       <div className={cn(`absolute -top-14 right-3 z-20`)}>
-        {/* <SphereIcon width={220} height={220} /> */}
+        <Image src={SphereIcon} alt="icon" width={220} height={220} />
       </div>
     ),
   },
@@ -69,8 +75,7 @@ const infoNavigation: Record<AdCategory, InfoNavigation> = {
     style: "bg-gradient-to-tr from-[#03A0D9] to-[#68DFF2]",
     icon: (
       <div className={cn(`absolute -top-14 right-3 z-20`)}>
-        {/* // <div className={cn(`absolute bottom-5 right-5 z-20`)}> */}
-        {/* <CrescentIcon width={220} height={220} /> */}
+        <Image src={CrescentIcon} alt="icon" width={220} height={220} />
       </div>
     ),
   },
@@ -80,8 +85,7 @@ const infoNavigation: Record<AdCategory, InfoNavigation> = {
     style: "bg-gradient-to-tr from-[#03A0D9] to-[#68DFF2]",
     icon: (
       <div className={cn(`absolute -top-14 right-3 z-20`)}>
-        {/* // <div className={cn(`absolute bottom-5 right-5 z-20`)}> */}
-        {/* <CrescentIcon width={220} height={220} /> */}
+        <Image src={MapIcon} alt="icon" width={240} height={240} />
       </div>
     ),
   },

@@ -17,7 +17,6 @@ export default async function MainPage() {
       <WrapperHotOfferUi data={hotOffer} />
 
       <WrapperNavigationUi>
-        <CardNavigationUi type="transport" />
         <CardNavigationUi type="housing" />
         <CardNavigationUi type="tour" />
         <CardNavigationUi type="transport" />

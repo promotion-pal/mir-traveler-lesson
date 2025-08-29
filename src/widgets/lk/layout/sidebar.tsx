@@ -1,5 +1,6 @@
 "use client";
 
+import { authService } from "@/features/api/site/auth";
 import { Person, userService } from "@/features/api/site/user";
 import { CommonLoader } from "@/shared/common";
 import { ROUTE } from "@/shared/config/path";
@@ -7,11 +8,9 @@ import { cn } from "@/shared/lib/utils";
 import {
   Archive,
   BellIcon,
-  ChartPieIcon,
   CircleUserRoundIcon,
   HeartIcon,
   LogOutIcon,
-  StarIcon,
   WalletIcon,
 } from "lucide-react";
 import Link from "next/link";
@@ -40,23 +39,12 @@ const NAV_ITEMS: NavItem[] = [
   {
     icon: Archive,
     label: "Мои объявления",
-    href: ROUTE.LK.USER,
+    href: ROUTE.LK.ADS.USER,
   },
   {
     icon: HeartIcon,
     label: "Избранное",
-    href: ROUTE.LK.USER,
-  },
-
-  {
-    icon: ChartPieIcon,
-    label: "Статистика",
-    href: "/lk/stats",
-  },
-  {
-    icon: StarIcon,
-    label: "Отзывы",
-    href: "/lk/reviews",
+    href: ROUTE.LK.FAVORITES,
   },
   {
     icon: BellIcon,
@@ -67,12 +55,12 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 function LkSidebar(props: Person) {
-  const { activeLink } = useLkSidebar();
+  const { activeLink, logout } = useLkSidebar();
 
   return (
     <aside className={"top-24 rounded-2xl h-fit bg-white pt-4 lg:sticky]"}>
       <div className="mb-4 px-6">
-        <h2 className="mb-1 text-2xl font-semibold">{props.first_name}</h2>
+        <p className="mb-1 text-2xl font-semibold">{props.first_name}</p>
 
         <div className="flex items-center gap-2">
           <span className="text-gray">{props.favorite_count} избранных</span>
@@ -103,7 +91,10 @@ function LkSidebar(props: Person) {
             </li>
           ))}
           <li>
-            <button className="flex mt-5 items-center gap-2">
+            <button
+              onClick={logout}
+              className="flex mt-5 cursor-pointer items-center gap-2"
+            >
               <LogOutIcon size={18} />
               Выйти
             </button>
@@ -132,7 +123,11 @@ const useLkSidebar = () => {
     );
   }, [pathname]);
 
-  return { user, activeLink };
+  const logout = () => {
+    authService.logout();
+  };
+
+  return { user, activeLink, logout };
 };
 
 const ClientLkSidebar = () => {

@@ -27,11 +27,16 @@ const ROUTE = {
     TRANSPORT: DYNAMIC_PATH(["transport"]),
     TOUR: DYNAMIC_PATH(["tour"]),
     HOUSE: DYNAMIC_PATH(["house"]),
+    ADS: (props: BasePageProps) => DYNAMIC_PATH([props.category], props),
   },
   LK: {
     USER: DYNAMIC_PATH(["lk", "user"]),
     NOTIFICATIONS: DYNAMIC_PATH(["lk", "notifications"]),
     WALLET: DYNAMIC_PATH(["lk", "wallet"]),
+    ADS: {
+      USER: DYNAMIC_PATH(["lk", "ads", "user"]),
+    },
+    FAVORITES: DYNAMIC_PATH(["lk", "favorites"]),
   },
   ADMIN: {
     ADS: {
