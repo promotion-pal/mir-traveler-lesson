@@ -44,4 +44,9 @@ export interface User {
   status: UserStatus;
 }
 
+export interface ContactingSupport {
+  email: string;
+  text: string;
+}
+
 export interface BusinessUser {}

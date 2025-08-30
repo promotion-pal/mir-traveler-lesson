@@ -57,8 +57,6 @@ function WrapperHotOfferUi({ data }: { data: HotOfferAd[] }) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
       </Carousel>
     </section>
   );

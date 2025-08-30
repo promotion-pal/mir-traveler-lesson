@@ -39,6 +39,7 @@ const textFieldVariants = cva("text-black", {
       default: "text-black",
       tariff: "bg-gray-100 focus:ring-2 focus:ring-primary",
       ad: "m-0 p-0 pr-6 text-black",
+      big: "p-5 bg-white ",
     },
   },
   defaultVariants: {

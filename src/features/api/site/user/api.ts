@@ -1,5 +1,5 @@
 import { api } from "../../fetch";
-import { Person, User, UserNotificationList } from "./types";
+import { ContactingSupport, Person, User, UserNotificationList } from "./types";
 
 class UserService {
   async getMe({ withToken = false }: { withToken: boolean }): Promise<Person> {
@@ -29,6 +29,10 @@ class UserService {
 
   async getFavorites() {
     return await api.getWithToken("/site/favorites/");
+  }
+
+  async contactingSupport(support: ContactingSupport) {
+    return await api.postWithToken("/site/support/", support);
   }
 }
 
