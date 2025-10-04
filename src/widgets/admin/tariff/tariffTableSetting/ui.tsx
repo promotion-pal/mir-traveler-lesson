@@ -2,12 +2,25 @@
 
 import { WrapperDialogEdits } from "@/entities/common/dialog";
 import { CommonDataTable } from "@/entities/common/table";
-import { AdminTariff } from "@/features/api/admin/tariff/types";
+import { adminTariffService, AdminTariff } from "@/features/api/admin/tariff";
 import { CommonTextField } from "@/features/form/fields";
 import { CommonEmpty } from "@/shared/common";
+import { Skeleton } from "@/shared/ui/skeleton";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 
-export function TariffTableSettingUi({ data }: { data: AdminTariff[] }) {
+export function TariffTableSettingUi({
+  data,
+  isLoad,
+  trigger,
+}: {
+  data: AdminTariff[] | null;
+  isLoad: boolean;
+  trigger: () => void;
+}) {
+  if (isLoad) return <Skeleton className="w-full h-20 bg-primary/10" />;
+  if (!data) return <CommonEmpty />;
+
   const tariffTableSettings = [
     {
       id: "1",
@@ -60,12 +73,12 @@ export function TariffTableSettingUi({ data }: { data: AdminTariff[] }) {
     description: z.string().min(10, {
       message: "Описание должно содержать минимум 10 символов",
     }),
-    place_limit: z.number().min(0).max(2147483647),
+    place_limit: z.coerce.number().min(0).max(2147483647),
     is_active: z.boolean(),
-    max_price: z.number().min(0).max(2147483647),
+    max_price: z.coerce.number().min(0).max(2147483647),
   });
 
-  return data && data.length > 0 ? (
+  return (
     <CommonDataTable
       className="w-full"
       columns={tariffTableSettings}
@@ -90,15 +103,16 @@ export function TariffTableSettingUi({ data }: { data: AdminTariff[] }) {
                   title: "Привет",
                   description: "рораовро",
                   place_limit: 4,
-                  is_active: false,
+                  is_active: true,
                   max_price: 2,
                 }}
                 data={props}
                 onSubmit={async (data) => {
-                  // await adminTariffService.updateGeneralSettings(
-                  //   props.id,
-                  //   data
-                  // );
+                  await adminTariffService.updateGeneralSettings(
+                    props.id,
+                    data
+                  );
+                  trigger();
                 }}
               >
                 {(form) => (
@@ -143,8 +157,6 @@ export function TariffTableSettingUi({ data }: { data: AdminTariff[] }) {
         }
       }}
     />
-  ) : (
-    <CommonEmpty />
   );
 }
 

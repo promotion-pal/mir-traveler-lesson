@@ -1,9 +1,29 @@
+import { CommonReqList } from "../../types";
+
 export type AdCategory =
   | "transport"
   | "housing"
   | "tour"
   | "recreation"
   | "excursion";
+
+export type BackAdCategory =
+  | "rent_housing"
+  | "rent_transport"
+  | "recreation"
+  | "tour"
+  | "excursion";
+
+export interface MainAdsList extends CommonReqList {
+  results: MainAds[];
+}
+export type MainAds = TransportMainAds;
+export interface BaseMainAds {
+  id: number;
+  title: string;
+  text: string;
+}
+interface TransportMainAds extends BaseMainAds {}
 
 export interface HotOfferAd {
   id: string;
@@ -72,4 +92,12 @@ export interface AdBanner {
   banner_image: string;
   banner_title: string;
   slider_title: string;
+}
+
+export interface BaseSearchParams {
+  count?: number;
+  search?: string;
+}
+export interface SearchParamsMainAds extends BaseSearchParams {
+  housing_type?: number;
 }

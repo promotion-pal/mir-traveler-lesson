@@ -3,6 +3,7 @@
 import { userService } from "@/features/api/site/user";
 import { app } from "@/shared/config/app";
 import { ROUTE } from "@/shared/config/path";
+import { cn } from "@/shared/lib/utils";
 import {
   Sheet,
   SheetContent,
@@ -56,6 +57,8 @@ const MobileHeaderUi = () => (
           <LineHeaderUi />
           <PagesNavigateUi />
         </div>
+
+        <BtnAuthHeaderUi />
       </SheetContent>
     </Sheet>
   </div>
@@ -91,10 +94,26 @@ bg-clip-text text-transparent"
 const AdNavigateUi = () => {
   const routes = [
     { title: "Главная", link: ROUTE.SITE.MAIN },
-    { title: "Аренда жилья", icon: HouseIcon, link: ".." },
-    { title: "Аренда транспорта", icon: CarFrontIcon, link: ROUTE.AUTH.LOGIN },
-    { title: "Туры и экскурсии", icon: EarthIcon, link: "" },
-    { title: "Отдых и развлечения", icon: TreePalmIcon, link: "k" },
+    {
+      title: "Аренда жилья",
+      icon: HouseIcon,
+      link: ROUTE.SITE.ADS({ category: "housing" }),
+    },
+    {
+      title: "Аренда транспорта",
+      icon: CarFrontIcon,
+      link: ROUTE.SITE.ADS({ category: "transport" }),
+    },
+    {
+      title: "Туры и экскурсии",
+      icon: EarthIcon,
+      link: ROUTE.SITE.ADS({ category: "tour" }),
+    },
+    {
+      title: "Отдых и развлечения",
+      icon: TreePalmIcon,
+      link: ROUTE.SITE.ADS({ category: "recreation" }),
+    },
   ];
 
   return (
@@ -120,7 +139,9 @@ const PagesNavigateUi = () => {
   const routes = [
     { title: "Контакты", link: ROUTE.SITE.CONTACT },
     // { title: "Блог", link: "" },
-    { title: "Пользовательское соглашение", link: ROUTE.DOCUMENTS.USER_AGREE },
+    { title: "Пользовательское соглашение", link: ROUTE.DOCUMENTS.PERSON_DATA },
+    { title: "Политика конфиденциальности", link: ROUTE.DOCUMENTS.USER_AGREE },
+    { title: "Договор оферты", link: ROUTE.DOCUMENTS.OFFER_AGREE },
   ];
 
   return (
@@ -167,8 +188,10 @@ const BtnAuthHeaderUi = () => {
     };
   }, []);
 
+  const style = "bg-primary md:w-24 w-full mt-5 md:mt-0 rounded-full";
+
   if (authState === "loading") {
-    return <Skeleton className="h-9 w-24 bg-[#5DD241] rounded-full" />;
+    return <Skeleton className={cn("h-9", style)} />;
   }
 
   return (
@@ -178,7 +201,10 @@ const BtnAuthHeaderUi = () => {
           ? ROUTE.ADMIN.DICTIONARIES
           : ROUTE.AUTH.LOGIN
       }
-      className="text-lg font-medium bg-[#5DD241] rounded-full text-white px-5 py-1"
+      className={cn(
+        "text-lg font-medium text-center text-white px-5 py-1",
+        style
+      )}
     >
       {authState === "authenticated" ? "Кабинет" : "Войти"}
     </Link>

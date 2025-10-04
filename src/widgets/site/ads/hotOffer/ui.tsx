@@ -5,7 +5,7 @@ import {
   HotOfferAd,
   PriceAdVariant,
 } from "@/features/api/site/ads";
-import { CommonPlugPhoto } from "@/shared/common";
+import { CommonEmpty, CommonPlugPhoto } from "@/shared/common";
 import { ROUTE } from "@/shared/config/path";
 import { cn } from "@/shared/lib/utils";
 import { Badge } from "@/shared/ui/badge";
@@ -23,7 +23,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-function WrapperHotOfferUi({ data }: { data: HotOfferAd[] }) {
+function WrapperHotOfferUi({ data }: { data: HotOfferAd[] | null }) {
+  if (!data) return <CommonEmpty />;
+
   const [api, setApi] = useState<CarouselApi>();
 
   useEffect(() => {

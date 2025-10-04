@@ -24,9 +24,6 @@ const ROUTE = {
   SITE: {
     CONTACT: DYNAMIC_PATH(["contact"]),
     MAIN: DYNAMIC_PATH([""]),
-    TRANSPORT: DYNAMIC_PATH(["transport"]),
-    TOUR: DYNAMIC_PATH(["tour"]),
-    HOUSE: DYNAMIC_PATH(["house"]),
     ADS: (props: BasePageProps) => DYNAMIC_PATH([props.category], props),
   },
   LK: {

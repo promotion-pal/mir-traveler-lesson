@@ -1,25 +1,3 @@
-// import type { MDXComponents } from "mdx/types";
-// import Image, { ImageProps } from "next/image";
-
-// const components = {
-//   h1: ({ children }) => (
-//     <h1 style={{ color: "green", fontSize: "48px" }}>{children}</h1>
-//   ),
-//   img: (props) => (
-//     <Image
-//       sizes="100vw"
-//       style={{ width: "100%", height: "auto" }}
-//       {...(props as ImageProps)}
-//     />
-//   ),
-// } satisfies MDXComponents;
-
-// export function useMDXComponents(): MDXComponents {
-//   return components;
-// }
-
-// src/app/mdx-components.tsx
-
 import type { MDXComponents } from "mdx/types";
 import Image, { ImageProps } from "next/image";
 
@@ -245,7 +223,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </td>
     ),
 
-    // Кастомные компоненты
     Card: ({ children, ...props }) => (
       <div
         style={{
@@ -304,7 +281,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       );
     },
 
-    // Сохраняем оригинальные компоненты
     ...components,
   };
 }

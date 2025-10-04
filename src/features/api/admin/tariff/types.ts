@@ -1,4 +1,4 @@
-import { AdCategory } from "../../site/ads";
+import { BackAdCategory } from "../../site/ads";
 import { CommonReqList } from "../../types";
 
 export type AdminTariffCategory = "scaleDefault" | "scaleByCity" | "default";
@@ -22,7 +22,7 @@ export interface UpdateAdminTariff {
 
 export interface AdminTariffScale {
   id: number;
-  category: AdCategory;
+  category: BackAdCategory;
   constant: number;
   main_widget_1: number;
   main_widget_3: number;
@@ -39,7 +39,7 @@ export interface AdminTariffScale {
 export interface UpdateAdminScaleDefault {
   category_scales: [
     {
-      category: AdCategory;
+      category: BackAdCategory;
       scales: Omit<AdminTariffScale, "category" | "id">;
     }
   ];
@@ -47,7 +47,7 @@ export interface UpdateAdminScaleDefault {
 
 export interface AdminTariffScaleByCity {
   category_scales: {
-    category: AdCategory;
+    category: BackAdCategory;
     id: number;
     scales: Omit<AdminTariffScale, "id" | "category">;
   }[];

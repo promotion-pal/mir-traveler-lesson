@@ -37,7 +37,7 @@ export function WrapperDialogEdits<T extends ZodType>({
     <Dialog>
       <DialogTrigger asChild>
         {trigger || (
-          <Button variant="white">
+          <Button>
             <Paintbrush2Icon />
           </Button>
         )}
@@ -93,10 +93,6 @@ export const WrapperDialogManagerAgreement = ({
     comment: z.string().min(1, "Комментарий обязателен"),
   });
 
-  const handleReject = (data: { comment: string }) => {
-    moderation(() => onReject(data.comment));
-  };
-
   return (
     <section className="flex gap-4">
       <Dialog>
@@ -110,7 +106,9 @@ export const WrapperDialogManagerAgreement = ({
           <CommonFrom
             schema={schema}
             defaultValues={{ comment: "" }}
-            onSubmit={handleReject}
+            onSubmit={async (data) => {
+              moderation(() => onReject(data.comment));
+            }}
           >
             {(form) => (
               <>
@@ -144,7 +142,6 @@ export const WrapperDialogManagerAgreement = ({
 
       <Button
         size="icon"
-        variant="primary"
         onClick={() => moderation(onConfirm)}
         disabled={isLoad || disable.confirm}
       >

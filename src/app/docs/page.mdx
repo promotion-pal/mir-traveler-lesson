@@ -1,12 +1,10 @@
 import { Button } from '@/shared/ui/button'
+import { WrapperHotOfferUi, mockHotOffers } from "@/widgets/site/ads/hotOffer";
 
 # Красивый заголовок
 
 Это абзац текста с [ссылкой](https://example.com).
 
-<Note variant="info">
-  Это информационное примечание с красивым стилем!
-</Note>
 
 ## Подзаголовок второго уровня
 
@@ -14,4 +12,10 @@ import { Button } from '@/shared/ui/button'
   <h3>Карточка с контентом</h3>
   <p>Текст внутри карточки</p>
   <Button>Красивая кнопка</Button>
+
+  <WrapperHotOfferUi data={mockHotOffers} />
+  
+  <Note variant="info">
+    Работает вот так то вот
+  </Note>
 </Card>
