@@ -1,11 +1,11 @@
 "use client";
 
 import { CommonFrom } from "@/features/form";
-import { CommonTextAreaField, CommonTextField } from "@/features/form/fields";
+import { CommonTextField } from "@/features/form/fields";
+import { useBearStore } from "@/features/store";
 import { Button } from "@/shared/ui/button";
 import { WrapperAuthUi, LineAuthUi, DocAuthUi } from "@/widgets/site/auth";
 import { BtnAuthUi } from "@/widgets/site/auth/ui";
-import { Divide } from "lucide-react";
 import z from "zod";
 
 export default function LoginPage() {
