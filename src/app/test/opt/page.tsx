@@ -1,22 +1,27 @@
-"useClient";
+"use client";
+
+import { Button } from "@/shared/ui/button";
 import { useState } from "react";
 
 export default function TestOptPage() {
-  return <div><testUseCallback>></div>;
+  return (
+    <div>
+      <TestUseCallback />
+    </div>
+  );
 }
 
-function testUseCallback() {
+function TestUseCallback() {
   const [count, setCount] = useState<number>(0);
-}
 
-const calc = () => {
-  setCount(count + 1);
-};
+  const calc = () => {
+    setCount(count + 1);
+  };
 
-return (
+  return (
     <div className="space-y-3">
-    <p>Счетчик: {count}</p>
-    <Button onClick={calc}>+1</Button>
-</div>
-);
+      <p>Счетчик: {count}</p>
+      <Button onClick={calc}>+1</Button>
+    </div>
+  );
 }
