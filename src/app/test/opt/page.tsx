@@ -1,14 +1,14 @@
 "use client";
 
 import { Button } from "@/shared/ui/button";
-import { useCallback, useState } from "react";
-import { number } from "zod";
+import { useCallback, useState, useMemo } from "react";
 
 export default function TestOptPage() {
-  return 
-  <div>
-   <TestUseCallback />
-div>;
+  return (
+    <div>
+      <TestUseCallback />
+    </div>
+  );
 }
 
 function TestUseCallback() {
@@ -32,16 +32,16 @@ function TestUseCallback() {
 }
 
 function TestUseMemo() {
-    const [number, setNumber] = useState<number>(100);
+  const [number, setNumber] = useState<number>(100);
 
-    const calcValue = useMemo(() => {
-return number * 1000 + 800 * 8000
-    },[];
+  const calcValue = useMemo(() => {
+    return number * 1000 + 800 * 8000;
+  }, []);
 
-    return (
-        <div>
-            <p> Значение: {number}</p>
-            <p> Вычесленное значение {calcValue}</p>
-        </div>
-    );
+  return (
+    <div>
+      <p> Значение: {number}</p>
+      <p> Вычесленное значение {calcValue}</p>
+    </div>
+  );
 }
