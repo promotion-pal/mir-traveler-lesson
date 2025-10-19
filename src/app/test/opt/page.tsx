@@ -7,6 +7,7 @@ export default function TestOptPage() {
   return (
     <div>
       <TestUseCallback />
+      <TestUseMemo />
     </div>
   );
 }
@@ -36,12 +37,17 @@ function TestUseMemo() {
 
   const calcValue = useMemo(() => {
     return number * 10000 + 800 * 80000;
-  }, []);
+  }, [number]);
+
+  const calc = useCallback(() => {
+    setNumber(number + 67);
+  }, [number]);
 
   return (
-    <div>
+    <div className="mt-10">
       <p>Значение: {number}</p>
       <p>Вычесленное значение {calcValue}</p>
+      <Button onClick={calc}>Кнопка: {number}</Button>
     </div>
   );
 }
