@@ -4,19 +4,19 @@ import { Button } from "@/shared/ui/button";
 import { useState } from "react";
 
 export default function TestOptPage() {
-  return <div>page</div>;
+  return <div>TestUseCallback</div>;
 }
 
-function testUseCallback() {
-  const [cont, setCount] = useState<number>(0);
+function TestUseCallback() {
+  const [count, setCount] = useState<number>(0);
 
   const calc = () => {
-    setCont(cont + 1);
+    setCount(count + 1);
   };
 
   return (
     <div className="space-y-3">
-      <p> Счетчик: {cont}</p>
+      <p> Счетчик: {count}</p>
       <Button onClick={calc}>+1</Button>
     </div>
   );
