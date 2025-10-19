@@ -26,7 +26,6 @@ function TestUseCallback() {
 
   return (
     <div className="space-y-3">
-      <p>Счетчик: {count}</p>
       <Button onClick={calc}>Кнопка 1: {count}</Button>
       <Button onClick={calc2}>Кнопка 2: {count2}</Button>
     </div>
@@ -35,19 +34,20 @@ function TestUseCallback() {
 
 function TestUseMemo() {
   const [number, setNumber] = useState<number>(100);
-  const [count2, setCount2] = useState<number>(0);
 
   const calcValue = useMemo(() => {
     return number * 10000 + 800 * 80000;
-  }, []);
+  }, [number]);
 
-  const calcValueNoOpt = number * 10000 + 800 * 80000;
-  const valueNoOpt = 65000000;
+  const calc = useCallback(() => {
+    setNumber(number + 67);
+  }, [number]);
 
   return (
     <div className="mt-10">
-      <p> Значение: {number}</p>
-      <p> Вычисленное значение {calcValue}</p>
+      <p>Значение: {number}</p>
+      <p>Вычесленное значение {calcValue}</p>
+      <Button onClick={calc}>Кнопка: {number}</Button>
     </div>
   );
 }
