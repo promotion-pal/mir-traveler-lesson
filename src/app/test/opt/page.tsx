@@ -1,12 +1,14 @@
 "use client";
 
 import { Button } from "@/shared/ui/button";
-import { useCallback, useState, useMemo } from "react";
+import { useCallback, useState, useMemo, memo } from "react";
 
 export default function TestOptPage() {
   return (
     <div>
       <TestUseCallback />
+      <TestUseMemo />
+      <TestMemo />
     </div>
   );
 }
@@ -38,10 +40,35 @@ function TestUseMemo() {
     return number * 1000 + 800 * 8000;
   }, []);
 
+  const calc = useCallback(() => {
+    setNumber(number + 67);
+  }, [number]);
+
   return (
-    <div>
+    <div className="mt-10">
       <p> Значение: {number}</p>
       <p> Вычесленное значение {calcValue}</p>
+      <Button onClick={calc}>Кнопка {number}</Button>
     </div>
   );
 }
+
+function TestMemo() {
+  return (
+    <div>
+      <TitleMemoizedUi title="" value="" />
+    </div>
+  );
+}
+
+interface TitleProps {
+  title: string;
+  value: string;
+}
+
+const TitleMemoizedUi = memo(function TitleMemoizedUi({
+  title,
+  value,
+}: TitleProps) {
+  return <div></div>;
+});
