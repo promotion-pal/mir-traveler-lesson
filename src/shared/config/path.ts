@@ -24,10 +24,19 @@ const ROUTE = {
   SITE: {
     CONTACT: DYNAMIC_PATH(["contact"]),
     MAIN: DYNAMIC_PATH([""]),
-    AD: (props: BasePageProps) => DYNAMIC_PATH([props.category], props),
-    TRANSPORT: DYNAMIC_PATH(["transport"]),
-    TOUR: DYNAMIC_PATH(["tour"]),
-    HOUSE: DYNAMIC_PATH(["house"]),
+    ADS: {
+      HOUSE: DYNAMIC_PATH(["housing"]),
+      TRANSPORT: DYNAMIC_PATH(["transport"]),
+      RECREATION: DYNAMIC_PATH(["recreation"]),
+      TOUR: DYNAMIC_PATH(["tour"]),
+      EXCURSION: DYNAMIC_PATH(["excursion"]),
+      DYNAMIC: (props: BasePageProps) =>
+        DYNAMIC_PATH([props.category, String(props.id || "")], props),
+    },
+    ARTICLE: {
+      BY_ID: (props?: BasePageProps) =>
+        DYNAMIC_PATH(["article", String(props?.id)], props),
+    },
   },
   LK: {
     USER: DYNAMIC_PATH(["lk", "user"]),
