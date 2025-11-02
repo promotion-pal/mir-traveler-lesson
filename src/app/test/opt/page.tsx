@@ -1,13 +1,14 @@
 "use client";
 
 import { Button } from "@/shared/ui/button";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, memo } from "react";
 
 export default function TestOptPage() {
   return (
     <div>
       <TestUseCallback />
       <TestUseMemo />
+      <TestMemo />
     </div>
   );
 }
@@ -51,3 +52,19 @@ function TestUseMemo() {
     </div>
   );
 }
+
+function TestMemo() {
+  return <div></div>;
+}
+
+interface TitleProps {
+  title: string;
+  value: string;
+}
+
+const TitleMemoizedUi = memo(function TitleMemoizedUi({
+  title,
+  value,
+}: TitleProps) {
+  return <div></div>;
+});
