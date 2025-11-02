@@ -1,13 +1,15 @@
 "use client";
 
+import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/button";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, memo, FC } from "react";
 
 export default function TestOptPage() {
   return (
     <div>
       <TestUseCallback />
       <TestUseMemo />
+      <TestMemo />
     </div>
   );
 }
@@ -51,3 +53,41 @@ function TestUseMemo() {
     </div>
   );
 }
+
+function TestMemo() {
+  return (
+    <div>
+      <TitleMemoizedUi title="Заголовок" value="пример" />
+      <TitleMemoizedUi title="Заголовок" value="пример" />
+    </div>
+  );
+}
+
+interface TitleProps {
+  title: string;
+  value: string;
+  styleTitle?: string;
+  styleWrapper?: string;
+}
+const TitleMemoizedUi = memo(function TitleMemoizedUi({
+  title,
+  value,
+  styleTitle,
+  styleWrapper,
+}: TitleProps) {
+  return (
+    <div className={cn("shadow-sm rounded-xl px-4 py-2", styleWrapper)}>
+      <p className={cn("text-xl", styleTitle)}>
+        {title} : {value}
+      </p>
+    </div>
+  );
+});
+
+function TitleUi({ title, value, styleTitle, styleWrapper }: TitleProps) {
+  return <div></div>;
+}
+
+const TitleUiFC: FC<TitleProps> = ({ title, value }) => {
+  return <div></div>;
+};
