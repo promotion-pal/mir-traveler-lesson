@@ -7,7 +7,6 @@ interface CommonLoaderProps {
   wrapperStyle?: string;
   iconSize?: number;
 }
-
 export function CommonLoader({
   iconStyle,
   wrapperStyle,
